@@ -6,15 +6,24 @@ var textarea = document.querySelector('textarea')
 
 // Retrieve name and note content from cookies and localstorage
 // Then apply them to elements on the page
-// YOUR CODE HERE
+var cookies = document.cookie.split('; ')
+var nameCookie = cookies.find(function(cookie) {
+  return cookie.startsWith('span')
+})
+if (nameCookie) {
+  nameSpan.textContent = nameCookie.split('=')[1]
+}
+
+
 
 formEl.onsubmit = function(e) {
   // prevents form submission
   e.preventDefault()
   // save name element's content to cookies
   // save textarea's content to localstorage
-  // YOUR CODE HERE
+  document.cookie = 'span=' + nameSpan.textContent + ';'
 
+  
   // triggers thumbs up animation
   this.elements.save.classList.add('emoji')
 }
