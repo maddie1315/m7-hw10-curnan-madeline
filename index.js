@@ -14,6 +14,10 @@ if (nameCookie) {
   nameSpan.textContent = nameCookie.split('=')[1]
 }
 
+var notesContent = localStorage.getItem('notes')
+if (notesContent) {
+  textarea.textContent = notesContent
+}
 
 
 formEl.onsubmit = function(e) {
@@ -23,6 +27,9 @@ formEl.onsubmit = function(e) {
   // save textarea's content to localstorage
   document.cookie = 'span=' + nameSpan.textContent + ';'
 
+  var notesContent = textarea.value
+  localStorage.setItem('notes', notesContent)
+  textarea.textContent = notesContent
   
   // triggers thumbs up animation
   this.elements.save.classList.add('emoji')
@@ -31,7 +38,9 @@ formEl.onsubmit = function(e) {
 clear.onclick = function() {
   // Clear textarea's value
   // Clear localstorage's content
-  // YOUR CODE HERE
+
+  textarea.value = ''
+  localStorage.clear();
 
   // triggers thumbs up animation
   this.classList.add('emoji')
